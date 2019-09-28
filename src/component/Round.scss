@@ -1,5 +1,5 @@
 body {
-  background: black;
+  background: rgb(23, 24, 25);
   padding: 20px;
 }
 h1 {
@@ -12,6 +12,7 @@ h1 {
   ul {
     border-radius: 10px;
     background: rgb(64, 67, 75);
+    width: 1200px;
     li {
       display: inline-flex;
       width: 33.33%;
@@ -22,6 +23,236 @@ h1 {
       font-weight: 600;
       justify-content: center;
       /*text-align: center;*/
+    }
+  }
+}
+@mixin match() {
+  width: 330px;
+  display: block;
+  margin: auto;
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+  i {
+    display: inline-block;
+    width: 20px;
+    vertical-align: middle;
+    color: #40434b;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+  }
+}
+@mixin participants() {
+  ul {
+    display: inline-block;
+    width: 300px;
+    vertical-align: middle;
+    li {
+      position: relative;
+      width: 300px;
+      display: block;
+      height: 35px;
+      line-height: 35px;
+      border: 1px solid rgb(68, 101, 197);
+      background: rgb(46, 47, 50);
+      > span {
+        display: inline-block;
+        vertical-align: middle;
+        color: #ffffff;
+        &.seed {
+          float: left;
+          color: rgb(68, 101, 197);
+          width: 30px;
+          text-align: center;
+          font-weight: 600;
+        }
+        &.name {
+          float: left;
+          text-indent: 10px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 200px;
+        }
+        &.score {
+          float: right;
+          width: 30px;
+          background: rgb(68, 101, 197);
+          text-align: center;
+          font-weight: 600;
+        }
+        &:after {
+          display: block;
+          content: "";
+          clear: both;
+        }
+      }
+      &:first-child {
+        border-radius: 10px 10px 0px 0px;
+        .score {
+          border-radius: 0px 8px 0px 0px;
+        }
+      }
+      &:nth-child(2) {
+        border-radius: 0px 0px 10px 10px;
+        .score {
+          border-radius: 0px 0px 8px 0px;
+        }
+      }
+
+      &.winner {
+        z-index: 2;
+        border-color: rgb(219, 106, 80);
+        .score {
+          background: rgb(219, 106, 80);
+        }
+        &:nth-child(1) {
+          &:after {
+            position: absolute;
+            content: "";
+            display: block;
+            bottom: -1px;
+            width: 100%;
+            height: 2px;
+            z-index: 3;
+            background: rgb(219, 106, 80);
+          }
+        }
+        &:nth-child(2) {
+          &:after {
+            position: absolute;
+            content: "";
+            display: block;
+            top: -1px;
+            width: 100%;
+            height: 2px;
+            z-index: 3;
+            background: rgb(219, 106, 80);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin matchLines($matchtype) {
+  .wapper {
+    position: relative;
+    hr {
+      position: absolute;
+      background: rgb(68, 101, 197);
+      border: 0px;
+      transform: translateY(-50%);
+    }
+    .vertical_line {
+      top: 50%;
+      content: "";
+      display: block;
+      right: -20px;
+      width: 1px;
+      height: 105px;
+    }
+    .horizon_line {
+      top: calc(50% - 52px);
+      content: "";
+      display: block;
+      right: -20px;
+      width: 40px;
+      height: 1px;
+      &.bottom {
+        top: calc(50% + 52px);
+      }
+      &.middle {
+        top: 50%;
+        content: "";
+        display: block;
+        right: -40px;
+        width: 20px;
+        height: 1px;
+      }
+    }
+    @if $matchtype == 2 {
+      &:first-child .vertical_line {
+        top: calc(50% + 52px);
+      }
+      &:last-child .vertical_line {
+        top: calc(50% - 52px);
+      }
+      .horizon_line {
+        top: calc(50%);
+        &.bottom {
+          top: calc(50% + 209px);
+        }
+        &.middle {
+          top: 142px;
+        }
+      }
+      &:last-child .horizon_line {
+        display: none;
+      }
+    }
+  }
+}
+.Matches {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  margin-top: 100px;
+  .MathDetail {
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+    width: 33.33%;
+    // one - 1라운드
+    &.one {
+      @include matchLines(1);
+    }
+    // two - 2라운드
+    &.two {
+      @include matchLines(2);
+      .wapper {
+        top: 8px;
+        &:first-child {
+          top: -8px;
+        }
+      }
+    }
+    .winner_cup {
+      font-size: 0px;
+    }
+    &.three {
+      position: relative;
+      .winner_cup {
+        position: absolute;
+        top: calc(50% + 17px);
+        transform: translateY(-50%);
+        left: 310px;
+        display: block;
+        width: 57px;
+        height: 73px;
+        background: url(./../winner_cup.png) no-repeat;
+        background-size: 100%;
+      }
+    }
+    &.auto_margin > .wapper {
+      margin: auto !important;
+    }
+    > .wapper {
+      margin: auto;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      .match {
+        // 경기
+        @include match();
+        // 경기자들
+        @include participants();
+      }
     }
   }
 }

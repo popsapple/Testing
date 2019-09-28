@@ -1,7 +1,7 @@
 export interface IMatch {
   id: {
-    r: number;
-    s: number;
+    r: 1 | 2 | 3;
+    s: 1 | 2 | 3;
     m: number;
   };
   number: number;
@@ -21,6 +21,6 @@ export interface IParticipantData {
 
 export interface IParticipant extends IParticipantData {
   seed: number;
-  score: number;
-  winner: boolean;
+  score: number[];
+  matches: number[];
 }
