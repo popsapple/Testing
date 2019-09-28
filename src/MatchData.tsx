@@ -1,6 +1,6 @@
-import { IMatch } from "./../interface";
+import { IMatch } from "./interface";
 export const MatchData: {
-  match: IMatch;
+  match: IMatch[];
 } = {
   match: [
     {

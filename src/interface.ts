@@ -5,20 +5,22 @@ export interface IMatch {
     m: number;
   };
   number: number;
-  participant: IParticipant;
+  participant: IParticipantData[];
   score: number[];
   seed: number[];
-  isfinal: boolean;
 }
 export interface IRound {
   round1: IMatch[];
   round2: IMatch[];
   round3: IMatch[];
 }
-export interface IParticipant {
-  _id: string;
-  seed: number;
+export interface IParticipantData {
+  _id: number;
   name: string;
+}
+
+export interface IParticipant extends IParticipantData {
+  seed: number;
   score: number;
   winner: boolean;
 }

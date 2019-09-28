@@ -1,3 +1,27 @@
 body {
   background: black;
+  padding: 20px;
+}
+h1 {
+  font-size: 25px;
+  color: rgb(51, 68, 118);
+  font-weight: 400;
+}
+.RoundTabs {
+  margin: 10px 0px;
+  ul {
+    border-radius: 10px;
+    background: rgb(64, 67, 75);
+    li {
+      display: inline-flex;
+      width: 33.33%;
+      height: 50px;
+      line-height: 52px;
+      color: #000000;
+      font-size: 20px;
+      font-weight: 600;
+      justify-content: center;
+      /*text-align: center;*/
+    }
+  }
 }
