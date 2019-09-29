@@ -101,7 +101,12 @@ h1 {
           border-radius: 0px 0px 8px 0px;
         }
       }
-
+      &.hovering {
+        background: rgb(68, 101, 197);
+        .seed {
+          color: rgb(46, 47, 50);
+        }
+      }
       &.winner {
         z-index: 2;
         border-color: rgb(219, 106, 80);

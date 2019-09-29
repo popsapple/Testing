@@ -55,7 +55,6 @@ export class Participant extends React.Component<
             : "")
         }
         onPointerEnter={() => {
-          console.log("마우스오버", _id);
           onHover(_id);
         }}
         onPointerLeave={() => {
